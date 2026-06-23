@@ -24,7 +24,7 @@ Ce script :
 - Python
 - xlwings (interaction Excel réel)
 - openpyxl (lecture de données)
--environement virtuel (venv)
+- environement virtuel (venv)
 ---
 
 
