@@ -1,38 +1,10 @@
+# SCRIPT AUTOMATISATION 
 
-#  Excel Inventory Automation (Casques)
-
-## Description
-
-Script Python permettant d’automatiser la gestion d’un inventaire de casques dans un fichier Excel.
-
-Ce projet à été pensé pour une utilisation unique dans le but d'automatiser une tache répétitive.
-Il a été éffectué dans une idée d'apprentissage de script plus complexe en python et guidé par IA (Copilot)
-
-Ce script :
-- ajoute automatiquement les casques dans l’inventaire
-- génère un numéro unique (RA-CQ-XXXX) à partir de RA-CQ-0044
-- affecte les casques aux collaborateurs
-- évite les doublons
-- conserve les menus déroulants Excel
-- fonctionne avec des fichiers SharePoint (via OneDrive)
+Ce repository regroupe les différents scripts et manipulation effectué pour automatiser des taches en milieu professionel.   
 
 
----
-
-##  Technologies utilisées
-
-- Python
-- xlwings (interaction Excel réel)
-- openpyxl (lecture de données)
-- environement virtuel (venv)
----
-
-
-## Utilisation
-
-```bash
-python script/main.py
-
-
-
-
+## Les différents scripts :
++ Script python pour effectuer un transfère d'inventaire dans un fichier Excel avec menu déroulant.
++ Script powershell pour le déploiment automatique d'un banière particulière Excel et d'une licence PDFxchange.  
++
++
