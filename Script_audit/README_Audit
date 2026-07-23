@@ -1,0 +1,45 @@
+# RubanAudit - Installation Automatique
+
+## 📋 Description
+
+Ce script PowerShell automatise l'installation et la configuration de l'environnement **RubanAudit** pour Excel ainsi que l'activation de la licence **PDF-XChange**.
+
+## 🚀 Fonctionnalités
+
+Le script réalise automatiquement les actions suivantes :
+
+### 1. Installation de la licence PDF-XChange
+- Recherche le fichier de licence `Licence 2019-2021.xcvault`
+- Lance le fichier pour importer la licence PDF-XChange
+- Attend quelques secondes afin de finaliser l'opération
+
+### 2. Déploiement de RubanAudit
+- Création du dossier `C:\RubanAudit`
+- Copie des fichiers nécessaires dans ce dossier
+- Exclusion des fichiers d'installation et de licence
+
+### 3. Configuration Excel
+- Ajout du dossier `C:\RubanAudit` comme **emplacement approuvé**
+- Autorisation des sous-dossiers
+- Autorisation des emplacements réseau approuvés
+
+### 4. Désactivation du Mode Protégé Excel
+Le script configure les clés de registre suivantes :
+- Désactivation du mode protégé pour les fichiers provenant d'Internet
+- Désactivation du mode protégé pour les pièces jointes Outlook
+- Désactivation du mode protégé pour les emplacements potentiellement non sécurisés
+
+### 5. Chargement automatique du complément Excel
+- Configuration de l'ouverture automatique de `RubanAUDIT.xlam` au démarrage d'Excel
+
+---
+
+## 📂 Structure attendue
+
+```text
+.
+├── script_audit.ps1
+├── RubanAUDIT.xlam
+├── Licence 2019-2021.xcvault
+├── lancer.bat
+└── autres fichiers nécessaires...
