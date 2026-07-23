@@ -1,6 +1,6 @@
 # SCRIPT AUTOMATISATION 
 
-Ce repository regroupe les différents scripts et manipulation effectué pour automatiser des taches en milieu professionel.   
+Ce repository regroupe les différents scripts et manipulations effectués pour automatiser des tâches en milieu professionel.   
 
 
 ## Les différents scripts :
