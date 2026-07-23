@@ -1,0 +1,61 @@
+Write-Host "Installation de la licence PDF-XChange..."
+<# Lance juste l'executable pour avoir une licence #> 
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$LicenceFile = Join-Path $ScriptDir "Licence 2019-2021.xcvault"
+Write-Host "ScriptDir = $ScriptDir"
+Write-Host "LicenceFile = $LicenceFile"
+Write-Host (Test-Path $LicenceFile)
+
+Invoke-Item $LicenceFile
+Start-Sleep -Seconds 3
+
+
+Write-Host "RubanAudit"
+<# Cree le fichier avec tout ce qu'il faut dans C:\ #> 
+$SourceFolder = $ScriptDir
+$DestinationFolder = "C:\RubanAudit"
+
+New-Item -Path $DestinationFolder -ItemType Directory -Force | Out-Null
+
+
+Copy-Item "$SourceFolder\*" $DestinationFolder `
+-Recurse `
+-Force `
+-Exclude "script_audit.ps1","lancer.bat","Licence 2019-2021.xcvault","README.txt"
+
+
+<# Ajouter l'emplacement approuve #> 
+$TrustedLocation = "HKCU:\Software\Microsoft\Office\16.0\Excel\Security\Trusted Locations\Location100"
+
+New-Item -Path $TrustedLocation -Force | Out-Null
+
+Set-ItemProperty -Path $TrustedLocation -Name Path -Value "C:\RubanAudit\"
+Set-ItemProperty -Path $TrustedLocation -Name AllowSubFolders -Value 1
+Set-ItemProperty -Path $TrustedLocation -Name Description -Value "Ruban Audit"
+
+<# Autoriser les emplacements reseau #> 
+
+Set-ItemProperty `
+    -Path "HKCU:\Software\Microsoft\Office\16.0\Excel\Security\Trusted Locations" `
+    -Name AllowNetworkLocations `
+    -Value 1
+
+
+<# Desactiver le mode proteger ? #>
+
+
+$ProtectedView = "HKCU:\Software\Microsoft\Office\16.0\Excel\Security\ProtectedView"
+
+New-Item -Path $ProtectedView -Force | Out-Null
+
+Set-ItemProperty -Path $ProtectedView -Name DisableInternetFilesInPV -Value 1
+Set-ItemProperty -Path $ProtectedView -Name DisableAttachmentsInPV -Value 1
+Set-ItemProperty -Path $ProtectedView -Name DisableUnsafeLocationsInPV -Value 1
+
+
+<# Installer automatiquement le complement #> 
+Set-ItemProperty `
+    -Path "HKCU:\Software\Microsoft\Office\16.0\Excel\Options" `
+    -Name "OPEN1" `
+    -Value '"C:\RubanAudit\RubanAUDIT.xlam"'
+Pause
